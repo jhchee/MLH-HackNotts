@@ -27,6 +27,7 @@ function draw() {
   plane(800, 800);
   pop();
 
+  // platform of lauching firework
   push();
   noStroke();
   fill(255);
@@ -35,6 +36,7 @@ function draw() {
   plane(40, 40);
   pop();
 
+  // box of restriction
   push();
   translate(0, 0, 0);
   noFill();
