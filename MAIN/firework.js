@@ -5,7 +5,7 @@
 
 function Firework() {
   this.hu = random(255);
-  this.firework = new Particle(random(-(1600/2),1600/2),(800/2),random(-80,80), this.hu, true);
+  this.firework = new Particle(random(-(1600/2),1600/2),(800/2),random(-8,8), this.hu, true);
   this.exploded = false;
   this.particles = [];
 
