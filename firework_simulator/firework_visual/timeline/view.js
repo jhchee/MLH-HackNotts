@@ -30,7 +30,7 @@ let timeline_view = function(model) {
     ctx.strokeRect(model.panel.x, model.panel.y, model.panel.width, model.panel.height);
     ctx.restore();
 
-    /* DRAW THE FIREWORKS */
+    /* DRAW THE FIREWORK NODES */
     ctx.save();
     let prevTime = 0, count = 0;
     for (const firework of model.fireworks) {
@@ -45,11 +45,33 @@ let timeline_view = function(model) {
 
         ctx.fillStyle = firework.color;
         ctx.beginPath();
-        ctx.arc(x,model.panel.y + model.panel.height/3 + 20 * count, 5, 0, Math.PI*2);
+        ctx.arc(x,model.panel.y + firework.timeline_y, 5, 0, Math.PI*2);
         ctx.fill();
         ctx.stroke();
       }
     }
+    ctx.restore();
+
+    
+
+    /* DRAW THE ADD BUTTON */
+    ctx.save();
+    ctx.lineWidth = 5;
+    ctx.fillStyle = (model.addButton.active) ? 'white' : 'gray';
+    ctx.beginPath();
+    ctx.rect(model.addButton.x, model.addButton.y, model.addButton.width, model.addButton.height);
+    ctx.fill();
+    ctx.stroke();
+    ctx.restore();
+
+    /* DRAW THE DELETE ALL BUTTON */
+    ctx.save();
+    ctx.lineWidth = 5;
+    ctx.fillStyle = 'red';
+    ctx.beginPath();
+    ctx.rect(model.deleteButton.x, model.deleteButton.y, model.deleteButton.width, model.deleteButton.height);
+    ctx.fill();
+    ctx.stroke();
     ctx.restore();
 
     /* DRAW THE TIMESTAMPS */

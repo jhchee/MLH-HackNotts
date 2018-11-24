@@ -2,7 +2,11 @@ let timeline_controller = function(model) {
   let canvas = document.getElementById('timeline');
 
   function withinPanel(x,y) {
-    return (x > model.panel.x) && (y > model.panel.y) && (x < model.panel.width) && (y < model.panel.height);
+    return (x > model.panel.x) && (y > model.panel.y) && (x < model.panel.x + model.panel.width) && (y < model.panel.y + model.panel.height);
+  }
+
+  function withinAddButton(x,y) {
+    return (x > model.addButton.x) && (y > model.addButton.y) && (x < model.addButton.x + model.addButton.width) && (y < model.addButton.y + model.addButton.height);
   }
 
   const MIN_TIME = -1;
@@ -42,6 +46,19 @@ let timeline_controller = function(model) {
         model.panel.startTime += (timerange * fraction * (1 - 1/ZOOM_LEVEL));
         model.panel.endTime -= (timerange * (1-fraction) * (1 - 1/ZOOM_LEVEL));
       }
+    }
+  });
+
+  // allow the user to add fireworks
+  canvas.addEventListener("click", (e) => {
+    if (withinPanel(e.offsetX, e.offsetY) && model.addButton.active) {
+      let timerange = model.panel.endTime - model.panel.startTime;
+      let fraction = (e.offsetX - model.panel.x) / model.panel.width;
+      let mouseTime = model.panel.startTime + timerange * fraction;
+
+      model.addFirework(mouseTime, `rgba(${255*Math.random()}, ${255*Math.random()}, ${255*Math.random()})`, e.offsetY - model.panel.y)
+    } else if (withinAddButton(e.offsetX, e.offsetY)) {
+      ;
     }
   });
 }(timeline_model);
