@@ -10,6 +10,7 @@ response
   })
   .then(data => {
     inputJson = data;
+    console.log(inputJson);
   })
   .catch(err => {
     console.log(err);
@@ -26,8 +27,8 @@ function setup() {
 }
 
 function draw() {
-  var time = Math.round((Date.now() - initial)/1000);
-  
+  var time = Math.round((Date.now() - initial) / 1000);
+
   colorMode(RGB);
   background(0, 0, 0, 255);
 
@@ -63,7 +64,7 @@ function draw() {
   // if(inputJson.length>0){
   //   if(inputJson[0].launch_time<=time){
   //     fireworks.push(new Firework(inputJson[0].pos.x,inputJson[0].pos.y,inputJson[0].pos.z));
-  //     delete inputJson[0];  
+  //     delete inputJson[0];
   //   }
   // }
 
