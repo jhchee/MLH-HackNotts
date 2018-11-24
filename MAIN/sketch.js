@@ -1,5 +1,18 @@
 var fireworks = [];
 var gravity;
+var inputJson = [];
+
+const response = fetch("data.json");
+response
+  .then(res => {
+    return res.json();
+  })
+  .then(data => {
+    inputJson = data;
+  })
+  .catch(err => {
+    console.log(err);
+  });
 
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
