@@ -2,7 +2,7 @@ function Firework() {
   this.hu = random(255);
   this.firework = new Particle(
     random(-400, 400),
-    random(-400, 400), //base
+    random(-400, 400),
     random(-400, 400),
     this.hu,
     true

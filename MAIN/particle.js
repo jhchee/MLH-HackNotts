@@ -1,8 +1,3 @@
-// Daniel Shiffman
-// http://codingtra.in
-// http://patreon.com/codingtrain
-// Code for: https://youtu.be/CKeyIbT3vXI
-
 function Particle(x, y, z, hu, firework) {
   this.firework = firework;
   if (this.firework) {
@@ -16,15 +11,10 @@ function Particle(x, y, z, hu, firework) {
   this.acc = createVector(0, 0, 0);
 
   if (this.firework) {
-    if (y >= 0) {
-      this.vel = createVector(x / 10, -(400 - y) / 10, z / 10);
-    } else {
-      this.vel = createVector(x / 10, -(-y + 400) / 10, z / 10);
-    }
+    this.vel = createVector(x / 10, -(400 - y) / 10, z / 10);
   } else {
     this.vel = p5.Vector.random3D();
-
-    // change the radius of dispersal
+    // define the range of radius of dispersal
     this.vel.mult(random(2, 20));
   }
 
@@ -44,7 +34,7 @@ function Particle(x, y, z, hu, firework) {
   };
 
   this.done = function() {
-    // define decay rate
+    // define the decay rate
     if (this.lifespan < 0) {
       return true;
     } else {
@@ -64,6 +54,7 @@ function Particle(x, y, z, hu, firework) {
     push();
     translate(this.pos.x, this.pos.y, this.pos.z);
 
+    // define the radius of one spark
     sphere(0.5);
     pop();
   };
