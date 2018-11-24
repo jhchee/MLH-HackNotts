@@ -15,14 +15,25 @@
       type="text/javascript"
       src="./firework_visual/particle.js"
     ></script>
+
+    <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
 </head>
 
 <body>
+  <canvas id="setup_screen" width="800" height="600"></canvas>
   <!-- FIREWORK CANVAS -->
   <canvas id="timeline" width="800" height="200"></canvas>
 
+  <script>
+  !function init() {
+    var timeline = new createjs.Stage("timeline");
+    var setupScreen = new createjs.Stage("setup_screen");
+  }();
+  </script>
+
+  <script src="firework_visual/timeline/model.js"></script>
   <script src="firework_visual/timeline/view.js"></script>
-  <Script src="firework_visual/timeline/controller.js"></script>
+  <script src="firework_visual/timeline/controller.js"></script>
 </body>
 
 </html>
