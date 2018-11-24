@@ -1,5 +1,6 @@
 var fireworks = [];
 var gravity;
+var initial = Date.now();
 var inputJson = [];
 
 const response = fetch("data.json");
@@ -25,6 +26,8 @@ function setup() {
 }
 
 function draw() {
+  var time = Math.round((Date.now() - initial)/1000);
+  
   colorMode(RGB);
   background(0, 0, 0, 255);
 
@@ -54,6 +57,15 @@ function draw() {
   strokeWeight(1);
   box(800, 800, 800);
   pop();
+
+  //input add firework to display
+
+  // if(inputJson.length>0){
+  //   if(inputJson[0].launch_time<=time){
+  //     fireworks.push(new Firework(inputJson[0].pos.x,inputJson[0].pos.y,inputJson[0].pos.z));
+  //     delete inputJson[0];  
+  //   }
+  // }
 
   if (random(1) < 0.05) {
     fireworks.push(new Firework());
