@@ -1,15 +1,3 @@
-/* timeline_model = {
-  fireworks: [],
-  panel: {
-    startTime: 0,
-    endTime: 15,
-    x: 25,
-    y: 40,
-    width: 550,
-    height: 135
-  }
-}; */
-
 let timeline_model = function() {
   let fireworks = [
     { time: 5,  color: 'red'    },
