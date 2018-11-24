@@ -4,17 +4,28 @@
 // Code for: https://youtu.be/CKeyIbT3vXI
 
 function Particle(x, y, z, hu, firework) {
-  this.pos = createVector(x, y, z);
   this.firework = firework;
-  this.lifespan = 1000;
+  if (this.firework) {
+    this.pos = createVector(0, 400, 0);
+    this.finalDestination = createVector(x, y, z);
+  } else {
+    this.pos = createVector(x, y, z);
+  }
+  this.lifespan = 800;
   this.hu = hu;
   this.acc = createVector(0, 0, 0);
 
   if (this.firework) {
-    this.vel = createVector(0, random(-20, -16), 0);
+    if (y >= 0) {
+      this.vel = createVector(x / 10, -(400 - y) / 10, z / 10);
+    } else {
+      this.vel = createVector(x / 10, -(-y + 400) / 10, z / 10);
+    }
   } else {
     this.vel = p5.Vector.random3D();
-    this.vel.mult(random(2, 10));
+
+    // change the radius of dispersal
+    this.vel.mult(random(2, 20));
   }
 
   this.applyForce = function(force) {
@@ -33,6 +44,7 @@ function Particle(x, y, z, hu, firework) {
   };
 
   this.done = function() {
+    // define decay rate
     if (this.lifespan < 0) {
       return true;
     } else {
@@ -52,7 +64,7 @@ function Particle(x, y, z, hu, firework) {
     push();
     translate(this.pos.x, this.pos.y, this.pos.z);
 
-    sphere(1);
+    sphere(0.5);
     pop();
   };
 }

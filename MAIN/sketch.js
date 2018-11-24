@@ -1,8 +1,3 @@
-// Daniel Shiffman
-// http://codingtra.in
-// http://patreon.com/codingtrain
-// Code for: https://youtu.be/CKeyIbT3vXI
-
 var fireworks = [];
 var gravity;
 
@@ -19,13 +14,33 @@ function setup() {
 function draw() {
   colorMode(RGB);
   background(0, 0, 0, 255);
+
+  // plane
+  push();
+  noStroke();
+  fill(100);
+  translate(0, 400, 0);
+  rotateX(0.5 * PI);
+  plane(800, 800);
+  pop();
+
+  push();
+  noStroke();
+  fill(255);
+  translate(0, 400, 0);
+  rotateX(0.5 * PI);
+  plane(40, 40);
+  pop();
+
   push();
   translate(0, 0, 0);
   noFill();
   stroke(255);
+  strokeWeight(1);
   box(800, 800, 800);
   pop();
-  if (random(1) < 0.03) {
+
+  if (random(1) < 0.05) {
     fireworks.push(new Firework());
   }
 
