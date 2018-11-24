@@ -11,10 +11,14 @@ let setupScreen = function() {
       rightGroundArrow = new createjs.Shape();
 
   function drawUpArrow(arrowObj) {
-    arrowObj.graphics.setStrokeStyle(10);
-    arrowObj.beginStroke("black");
-    arrowObj.moveTo(300, 550);
-    arrowObj.lineTo(300, 50);
+    arrowObj.graphics.setStrokeStyle(10, "round");
+    arrowObj.graphics.beginStroke("black");
+    arrowObj.graphics.moveTo(300, 550);
+    arrowObj.graphics.lineTo(300, 50);
+    arrowObj.graphics.lineTo(290, 60);
+    arrowObj.graphics.lineTo(310, 60);
+    arrowObj.graphics.lineTo(300, 50);
+    arrowObj.graphics.endStroke();
   }
 
   leftSky    .graphics.beginFill("#8ce").drawRect(10,10,580,540);
@@ -26,7 +30,7 @@ let setupScreen = function() {
 
   stage.addChild(leftSky); stage.addChild(leftGround);
   stage.addChild(rightSky); stage.addChild(rightGround);
+  stage.addChild(leftUpArrow);
   stage.update();
-
 
 }();
