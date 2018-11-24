@@ -36,6 +36,44 @@
     ></script>
   </head>
   <body>
-    <div style="background: red; height: 200px;width: 50%;"><s/div>
+    <div class="control-panel">
+      <div class="slider-container">
+        <label>X-index</label>
+        <input
+          type="range"
+          name="rangeInput"
+          min="-400"
+          max="400"
+          value="0"
+          onchange="updateX(this.value);"
+        />
+        <input type="text" id="x-index" value="0" />
+      </div>
+      <div class="slider-container">
+        <label>Height</label>
+        <input
+          type="range"
+          name="rangeInput"
+          min="0"
+          max="800"
+          value="0"
+          onchange="updateY(this.value);"
+        />
+        <input type="text" id="y-index" value="0" />
+      </div>
+      <div class="slider-container">
+        <label>Z-index</label>
+        <input
+          type="range"
+          name="rangeInput"
+          min="-400"
+          max="400"
+          value="0"
+          onchange="updateZ(this.value);"
+        />
+        <input type="text" id="x-index" value="0" />
+      </div>
+      <button>Preview</button> <button>Add</button>
+    </div>
   </body>
 </html>

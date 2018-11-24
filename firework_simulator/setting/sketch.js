@@ -1,7 +1,17 @@
 var timeSlice = [];
 
+function updateX(val) {
+  document.getElementById("x-index").value = val;
+}
+function updateY(val) {
+  document.getElementById("y-index").value = val;
+}
+function updateZ(val) {
+  document.getElementById("z-index").value = val;
+}
+
 function setup() {
-  createCanvas(windowWidth/2, windowHeight/2, WEBGL);
+  createCanvas(windowWidth, windowHeight, WEBGL);
   colorMode(HSB);
   gravity = createVector(0, 0.2, 0);
   stroke(255);
@@ -11,8 +21,6 @@ function setup() {
 }
 
 function draw() {
-  
-  
   colorMode(RGB);
   background(0, 0, 0, 255);
 
@@ -42,27 +50,22 @@ function draw() {
   strokeWeight(1);
   box(800, 800, 800);
   pop();
-
-  
 }
 
-
-function display(time){
+function display(time) {
   var i = 0;
   var j = 0;
 
-  for (i=0;i<timeSlice.length;i++){
-    if(timeSlice[i].launched_time==time){
+  for (i = 0; i < timeSlice.length; i++) {
+    if (timeSlice[i].launched_time == time) {
       var firework = timeSlice[i].firework;
-      for(j=0;j<timeSlice[i].firework.length;j++){
+      for (j = 0; j < timeSlice[i].firework.length; j++) {
         push();
-          translate(firework[j].pos.x,firework[j].pos.y,firework[j].pos.z);
-          sphere(1);
+        translate(firework[j].pos.x, firework[j].pos.y, firework[j].pos.z);
+        sphere(1);
         pop();
       }
       break;
     }
   }
-
-
 }
