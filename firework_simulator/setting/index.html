@@ -1,6 +1,8 @@
 <html>
   <head>
     <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css" href="setupPage.css" />
+
     <script
       language="javascript"
       type="text/javascript"
@@ -34,58 +36,64 @@
       type="text/javascript"
       src="https://rawgit.com/diwi/p5.EasyCam/master/p5.easycam.js"
     ></script>
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div class="control-panel">
       <div class="slider-container">
-        <label>X-index</label>
-        <input
+        <label class="slider-label">X-index</label> <br />
+        <input id="x-slide"
           type="range"
           name="rangeInput"
           min="-400"
           max="400"
           value="0"
-          onchange="updateX(this.value);"
+          onchange="update(true);"
         />
-        <input type="text" id="x-index" value="0" />
+        <input onchange="update(false);" type="text" class="pos-input" id="x-index" value="0" />
       </div>
       <div class="slider-container">
-        <label>Height</label>
-        <input
+        <label class="slider-label">Height</label> <br />
+
+        <input id="y-slide"
           type="range"
           name="rangeInput"
           min="0"
           max="800"
           value="0"
-          onchange="updateY(this.value);"
+          onchange="update(true);"
         />
-        <input type="text" id="y-index" value="0" />
+        <input onchange="update(false);" type="text" class="pos-input" id="y-index" value="0" />
       </div>
       <div class="slider-container">
-        <label>Z-index</label>
-        <input
+        <label class="slider-label">Z-index</label> <br />
+        <input id="z-slide"
           type="range"
           name="rangeInput"
           min="-400"
           max="400"
           value="0"
-          onchange="updateZ(this.value);"
+          onchange="update(true);"
         />
-        <input type="text" id="z-index" value="0" />
+        <input onchange="update(false);" type="text" class="pos-input" id="z-index" value="0" />
       </div>
       <div class="slider-container">
-        <label>time</label>
-        <input
+        <label class="slider-label">Timeslice</label> <br />
+        <input id="time-slide"
           type="range"
           name="rangeInput"
           min="0"
           max="30"
           value="0"
-          onchange="updateTime(this.value);"
+          onchange="update(true);"
         />
-        <input type="text" id="timeSlice" value="0" />
+        <input onchange="update(false);" type="text" class="pos-input" id="time-slice" value="0" />
       </div>
-      <button>Preview</button> <button id="addButton" onclick ="addButton();">Add</button><button id="saveButton" onclick ="saveButton();">Save</button>
+      <br />
+      <button>Preview</button> {&nbsp;}<button id="addButton" onclick ="addButton();">Add</button> {&nbsp;}<button id="saveButton" onclick ="saveButton();">Save</button>
     </div>
   </body>
 </html>

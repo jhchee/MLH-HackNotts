@@ -2,30 +2,39 @@ var timeSlice = [];
 var newFirework= {}
 var time = 0;
 
-function updateX(val) {
-  document.getElementById("x-index").value = val;
-  if(!isEmpty(newFirework)){
-    newFirework.pos.x = val ;
+function update(isSlide) {
+  var data ={"time": 0 ,"pos": {"x": 0, "y": 400, "z": 0}};
+  if(isSlide){
+    data.pos.x = document.getElementById("x-slide").value;
+    data.pos.y = 400 - document.getElementById("y-slide").value;
+    data.pos.z = document.getElementById("z-slide").value;
+    data.time = document.getElementById("time-slide").value;
+  }else{
+    data.pos.x = document.getElementById("x-index").value;
+    data.pos.y = 400 - document.getElementById("y-index").value;
+    data.pos.z = document.getElementById("z-index").value;
+    data.time = document.getElementById("time-slice").value;
   }
-}
-function updateY(val) {
-  document.getElementById("y-index").value = val;
-  if(!isEmpty(newFirework)){
-    newFirework.pos.y = 400-val ;
-  }
-}
-function updateZ(val) {
-  document.getElementById("z-index").value = val;
-  if(!isEmpty(newFirework)){
-    
-        newFirework.pos.z = val ;  
-    
-  }
-}
 
-function updateTime(val){
-  document.getElementById("timeSlice").value = val;
-  time = val ;
+
+    document.getElementById("x-slide").value = data.pos.x;
+    document.getElementById("y-slide").value = 400 - data.pos.y;
+    document.getElementById("z-slide").value = data.pos.z;
+    document.getElementById("time-slide").value= data.time;
+
+    document.getElementById("x-index").value = data.pos.x;
+    document.getElementById("y-index").value = 400 - data.pos.y;
+    document.getElementById("z-index").value = data.pos.z;
+    document.getElementById("time-slice").value = data.time;
+
+
+  if(!isEmpty(newFirework)){
+    newFirework.pos.x = data.pos.x 
+    newFirework.pos.y = data.pos.y 
+    newFirework.pos.z = data.pos.z 
+    time = data.time
+
+  }
 }
 
 function addButton(){
@@ -38,16 +47,20 @@ function saveButton(){
   newFirework = {};
 }
 
+function previewJson(){
+  
+}
 
 function setup() {
+
   var i = 0;
-  for(i=0;i<30;i++){
+  for(i=0;i<=30;i++){
     timeSlice.push([]);
 
   }
 
+  createCanvas(windowWidth - 20, windowHeight - 20, WEBGL);
 
-  createCanvas(windowWidth/2, windowHeight/2, WEBGL);
   colorMode(HSB);
   gravity = createVector(0, 0.2, 0);
   stroke(255);
