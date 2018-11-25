@@ -3,6 +3,8 @@ var newFirework = {};
 var time = 0;
 var camera;
 var randomised = false;
+var currentIndex = 0;
+var editMode = false;
 
 function randomiseFirework() {
   randomised = true;
@@ -23,14 +25,6 @@ function update(isSlide) {
     data.time = document.getElementById("time-slice").value;
   }
 
-  if(document.getElementById("time-slide").value != data.time||document.getElementById("time-slice").value != data.time){
-    var innerString = "";
-    for (var j = 0; j < timeSlice[time].length; j++) {
-      innerString = innerString + "<option indexId=\""+ j.toString() + "\" > Fireworks "+j.toString()+"</opion></br>";
-    }
-    document.getElementById("Dropdown").innerHTML = innerString;
-  }
-
   document.getElementById("x-slide").value = data.pos.x;
   document.getElementById("y-slide").value = 400 - data.pos.y;
   document.getElementById("z-slide").value = data.pos.z;
@@ -47,6 +41,21 @@ function update(isSlide) {
     newFirework.pos.y = data.pos.y;
     newFirework.pos.z = data.pos.z;
   }
+
+  // create drop down list
+
+  var innerString = "";
+  for (var j = 0; j < timeSlice[time].length; j++) {
+    innerString =
+      innerString +
+      '<option indexId="' +
+      j.toString() +
+      '" > Fireworks ' +
+      j.toString() +
+      "</opion></br>";
+  }
+  console.log(document.getElementById("drop-down"));
+  document.getElementById("drop-down").innerHTML = innerString;
 }
 
 function addButton() {
@@ -57,11 +66,27 @@ function addButton() {
   document.getElementById("x-index").value = 0;
   document.getElementById("y-index").value = 0;
   document.getElementById("z-index").value = 0;
-  newFirework = { color: "yellow", pos: { x: 0, y: 400, z: 0 } };
+
+  if (editMode) {
+    // console.log(currentIndex);
+    timeSlice[time].splice(currentIndex, 0, newFirework);
+    // console.log(timeSlice[time].length);
+    editMode = false;
+  }
+  newFirework = { pos: { x: 0, y: 400, z: 0 } };
   timeSlice[time].push(newFirework);
+
   update(true);
-  newFirework = timeSlice[time].slice(newFirework.);
-  newFirework = {}
+}
+
+function editFirework() {
+  if (editMode) {
+    timeSlice[time].splice(currentIndex, 0, newFirework);
+  }
+  currentIndex = document.getElementById("drop-down").selectedIndex;
+  newFirework = timeSlice[time].splice(currentIndex, 1)[0];
+  console.log(newFirework);
+  editMode = true;
 }
 
 function loadButton() {

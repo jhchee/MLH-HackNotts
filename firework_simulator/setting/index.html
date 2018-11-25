@@ -35,7 +35,8 @@
     <div class="control-panel">
       <div class="slider-container">
         <label class="slider-label">X-index</label> <br />
-        <input id="x-slide"
+        <input
+          id="x-slide"
           type="range"
           name="rangeInput"
           min="-400"
@@ -43,12 +44,19 @@
           value="0"
           onchange="update(true);"
         />
-        <input onchange="update(false);" type="text" class="pos-input" id="x-index" value="0" />
+        <input
+          onchange="update(false);"
+          type="text"
+          class="pos-input"
+          id="x-index"
+          value="0"
+        />
       </div>
       <div class="slider-container">
         <label class="slider-label">Height</label> <br />
 
-        <input id="y-slide"
+        <input
+          id="y-slide"
           type="range"
           name="rangeInput"
           min="0"
@@ -56,11 +64,18 @@
           value="0"
           onchange="update(true);"
         />
-        <input onchange="update(false);" type="text" class="pos-input" id="y-index" value="0" />
+        <input
+          onchange="update(false);"
+          type="text"
+          class="pos-input"
+          id="y-index"
+          value="0"
+        />
       </div>
       <div class="slider-container">
         <label class="slider-label">Z-index</label> <br />
-        <input id="z-slide"
+        <input
+          id="z-slide"
           type="range"
           name="rangeInput"
           min="-400"
@@ -68,11 +83,18 @@
           value="0"
           onchange="update(true);"
         />
-        <input onchange="update(false);" type="text" class="pos-input" id="z-index" value="0" />
+        <input
+          onchange="update(false);"
+          type="text"
+          class="pos-input"
+          id="z-index"
+          value="0"
+        />
       </div>
       <div class="slider-container">
         <label class="slider-label">Timeslice</label> <br />
-        <input id="time-slide"
+        <input
+          id="time-slide"
           type="range"
           name="rangeInput"
           min="0"
@@ -80,19 +102,23 @@
           value="0"
           onchange="update(true);"
         />
-        <input onchange="update(false);" type="text" class="pos-input" id="time-slice" value="0" />
+        <input
+          onchange="update(false);"
+          type="text"
+          class="pos-input"
+          id="time-slice"
+          value="0"
+        />
       </div>
       <br />
       <button id="resetButton" onclick="resetButton();">Reset Camera</button>
-      {&nbsp;}
-      <button id="addButton" onclick="addButton();">Add</button>
-      {&nbsp;}
-      <button id="saveButton" onclick="saveButton();">Save</button></br></br>
-      <button id="loadButton" onclick="loadButton();">Load</button>
-      {&nbsp;}
-      <button onclick="previewJson()">Display</button>
-      {&nbsp;}
+      &nbsp; <button id="addButton" onclick="addButton();">Add</button> &nbsp;
+      <br />
+      <button id="loadButton" onclick="loadButton();">Load</button> &nbsp;
+      <button onclick="previewJson()">Display</button> &nbsp;
       <button onclick="randomiseFirework()">Random</button>
+      <!-- <button onclick="randomiseFirework()">Edit</button> -->
+      <select id="drop-down" onchange="editFirework()"></select>
     </div>
   </body>
 </html>
