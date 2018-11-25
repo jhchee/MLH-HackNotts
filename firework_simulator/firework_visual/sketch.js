@@ -4,28 +4,21 @@ var initial = Date.now();
 var inputJson = JSON.parse(localStorage.getItem("fireworks"));
 var i = 0;
 var j = 0;
+var urlParams = new URLSearchParams(window.location.search);
+var randomFirework = urlParams.get("randomised");
 
-// const response = fetch("data.json");
-// response
-//   .then(res => {
-//     return res.json();
-//   })
-//   .then(data => {
-//     inputJson = data;
-//     console.log(inputJson);
-//   })
-//   .catch(err => {
-//     console.log(err);
-//   });
+function randomiseFirework() {
+  randomFirework = true;
+}
 
 function setup() {
-  createCanvas(windowWidth, windowHeight, WEBGL);
+  createCanvas(windowWidth - 20, windowHeight - 20, WEBGL);
   colorMode(HSB);
   gravity = createVector(0, 0.2, 0);
   stroke(255);
   strokeWeight(4);
   background(0);
-  createEasyCam({ distance: 400 });
+  createEasyCam({ distance: 1200 });
 }
 
 function draw() {
@@ -62,7 +55,14 @@ function draw() {
   pop();
 
   //input add firework to display
-  if (i <= 30 && i <= time) {
+  if (randomFirework) {
+    if (random(1) < 0.05) {
+      fireworks.push(
+        new Firework(random(-400, 400), random(-400, 400), random(-400, 400))
+      );
+    }
+  } else if (i <= 30 && i <= time) {
+    document.getElementById("timeslice-counter").innerHTML = i;
     for (j = 0; j < inputJson[i].length; j++) {
       fireworks.push(
         new Firework(
@@ -74,10 +74,6 @@ function draw() {
     }
     i++;
   }
-
-  // if (random(1) < 0.05) {
-  //   fireworks.push(new Firework());
-  // }
 
   for (var k = fireworks.length - 1; k >= 0; k--) {
     fireworks[k].update();

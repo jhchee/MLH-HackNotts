@@ -2,6 +2,12 @@ var timeSlice = [];
 var newFirework = {};
 var time = 0;
 var camera;
+var randomised = false;
+
+function randomiseFirework() {
+  randomised = true;
+  previewJson();
+}
 
 function update(isSlide) {
   var data = { time: 0, pos: { x: 0, y: 400, z: 0 } };
@@ -62,7 +68,7 @@ function previewJson() {
   let data = JSON.stringify(timeSlice);
 
   localStorage.setItem("fireworks", data);
-  window.location = "../firework_visual/display.html";
+  window.location = "../firework_visual/display.html?randomised=" + randomised;
 }
 
 function resetButton() {
