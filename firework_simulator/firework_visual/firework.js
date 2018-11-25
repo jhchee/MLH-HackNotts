@@ -1,12 +1,13 @@
-function Firework() {
+function Firework(x, y, z) {
   this.hu = random(255);
-  this.firework = new Particle(
-    random(-400, 400),
-    random(-400, 400),
-    random(-400, 400),
-    this.hu,
-    true
-  );
+  // this.firework = new Particle(
+  //   random(-400, 400),
+  //   random(-400, 400),
+  //   random(-400, 400),
+  //   this.hu,
+  //   true
+  // );
+  this.firework = new Particle(x, y, z, this.hu, true);
   this.exploded = false;
   this.particles = [];
 

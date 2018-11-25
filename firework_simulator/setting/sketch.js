@@ -1,78 +1,78 @@
 var timeSlice = [];
-var newFirework= {}
+var newFirework = {};
 var time = 0;
 var camera;
 
-
 function update(isSlide) {
-  var data ={"time": 0 ,"pos": {"x": 0, "y": 400, "z": 0}};
-  if(isSlide){
+  var data = { time: 0, pos: { x: 0, y: 400, z: 0 } };
+  if (isSlide) {
     data.pos.x = document.getElementById("x-slide").value;
     data.pos.y = 400 - document.getElementById("y-slide").value;
     data.pos.z = document.getElementById("z-slide").value;
     data.time = document.getElementById("time-slide").value;
-  }else{
+  } else {
     data.pos.x = document.getElementById("x-index").value;
     data.pos.y = 400 - document.getElementById("y-index").value;
     data.pos.z = document.getElementById("z-index").value;
     data.time = document.getElementById("time-slice").value;
   }
 
+  document.getElementById("x-slide").value = data.pos.x;
+  document.getElementById("y-slide").value = 400 - data.pos.y;
+  document.getElementById("z-slide").value = data.pos.z;
+  document.getElementById("time-slide").value = data.time;
 
-    document.getElementById("x-slide").value = data.pos.x;
-    document.getElementById("y-slide").value = 400 - data.pos.y;
-    document.getElementById("z-slide").value = data.pos.z;
-    document.getElementById("time-slide").value= data.time;
+  document.getElementById("x-index").value = data.pos.x;
+  document.getElementById("y-index").value = 400 - data.pos.y;
+  document.getElementById("z-index").value = data.pos.z;
+  document.getElementById("time-slice").value = data.time;
+  time = data.time;
 
-    document.getElementById("x-index").value = data.pos.x;
-    document.getElementById("y-index").value = 400 - data.pos.y;
-    document.getElementById("z-index").value = data.pos.z;
-    document.getElementById("time-slice").value = data.time;
-
-
-  if(!isEmpty(newFirework)){
-    newFirework.pos.x = data.pos.x 
-    newFirework.pos.y = data.pos.y 
-    newFirework.pos.z = data.pos.z 
-    time = data.time
-
+  if (!isEmpty(newFirework)) {
+    newFirework.pos.x = data.pos.x;
+    newFirework.pos.y = data.pos.y;
+    newFirework.pos.z = data.pos.z;
   }
 }
 
-function addButton(){
+function addButton() {
   document.getElementById("x-slide").value = 0;
   document.getElementById("y-slide").value = 0;
   document.getElementById("z-slide").value = 0;
 
   document.getElementById("x-index").value = 0;
-  document.getElementById("y-index").value = 0 ;
+  document.getElementById("y-index").value = 0;
   document.getElementById("z-index").value = 0;
-  newFirework = {"color": "yellow","pos": {"x": 0, "y": 400, "z": 0}}
-
-};
-
-function saveButton(){
-  timeSlice[time].push(newFirework);
-  newFirework = {};
+  newFirework = { color: "yellow", pos: { x: 0, y: 400, z: 0 } };
 }
 
-function previewJson(){
+function saveButton() {
+  if (!isEmpty(newFirework)) {
+    timeSlice[time].push(newFirework);
+    newFirework = {};
+  }
+}
+function loadButton() {
+  if (!isEmpty(JSON.parse(localStorage.getItem("fireworks")))) {
+    timeSlice = JSON.parse(localStorage.getItem("fireworks"));
+  }
+}
+
+function previewJson() {
   let data = JSON.stringify(timeSlice);
 
-  localStorage.setItem('fireworks', data); 
+  localStorage.setItem("fireworks", data);
   window.location = "../firework_visual/display.html";
 }
 
-function resetButton(){
+function resetButton() {
   camera.reset();
 }
 
 function setup() {
-
   var i = 0;
-  for(i=0;i<=30;i++){
+  for (i = 0; i <= 30; i++) {
     timeSlice.push([]);
-
   }
 
   createCanvas(windowWidth - 20, windowHeight - 20, WEBGL);
@@ -117,49 +117,33 @@ function draw() {
   pop();
 
   display();
-
-  camera.pushState();
-    translate(300, 200, -200);
-    noFill();
-    stroke(255);
-    strokeWeight(1);
-    box(10, 10, 10);
-
-  camera.popState();  
-
 }
 
-
-function display(){
-
+function display() {
   var i = 0;
-  var j = 0;
 
-  
-    
-  
-  for (j = 0; j < timeSlice[time].length; j++) {
+  for (var j = 0; j < timeSlice[time].length; j++) {
     push();
-    translate(timeSlice[time][j].pos.x, timeSlice[time][j].pos.y, timeSlice[time][j].pos.z);
+    translate(
+      timeSlice[time][j].pos.x,
+      timeSlice[time][j].pos.y,
+      timeSlice[time][j].pos.z
+    );
     sphere(10);
     pop();
   }
 
-  if(!isEmpty(newFirework)){
+  if (!isEmpty(newFirework)) {
     push();
-          translate(newFirework.pos.x,newFirework.pos.y,newFirework.pos.z);
-          sphere(10);
+    translate(newFirework.pos.x, newFirework.pos.y, newFirework.pos.z);
+    sphere(10);
     pop();
   }
-
 }
-
 
 function isEmpty(obj) {
-    for(var key in obj) {
-        if(obj.hasOwnProperty(key))
-            return false;
-    }
-    return true;
+  for (var key in obj) {
+    if (obj.hasOwnProperty(key)) return false;
+  }
+  return true;
 }
-

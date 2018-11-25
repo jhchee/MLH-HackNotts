@@ -1,20 +1,22 @@
 var fireworks = [];
 var gravity;
 var initial = Date.now();
-var inputJson = [];
+var inputJson = JSON.parse(localStorage.getItem("fireworks"));
+var i = 0;
+var j = 0;
 
-const response = fetch("data.json");
-response
-  .then(res => {
-    return res.json();
-  })
-  .then(data => {
-    inputJson = data;
-    console.log(inputJson);
-  })
-  .catch(err => {
-    console.log(err);
-  });
+// const response = fetch("data.json");
+// response
+//   .then(res => {
+//     return res.json();
+//   })
+//   .then(data => {
+//     inputJson = data;
+//     console.log(inputJson);
+//   })
+//   .catch(err => {
+//     console.log(err);
+//   });
 
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
@@ -60,24 +62,29 @@ function draw() {
   pop();
 
   //input add firework to display
-
-  // if(inputJson.length>0){
-  //   if(inputJson[0].launch_time<=time){
-  //     fireworks.push(new Firework(inputJson[0].pos.x,inputJson[0].pos.y,inputJson[0].pos.z));
-  //     delete inputJson[0];
-  //   }
-  // }
-
-  if (random(1) < 0.05) {
-    fireworks.push(new Firework());
+  if (i <= 30 && i <= time) {
+    for (j = 0; j < inputJson[i].length; j++) {
+      fireworks.push(
+        new Firework(
+          inputJson[i][j].pos.x,
+          inputJson[i][j].pos.y,
+          inputJson[i][j].pos.z
+        )
+      );
+    }
+    i++;
   }
 
-  for (var i = fireworks.length - 1; i >= 0; i--) {
-    fireworks[i].update();
-    fireworks[i].show();
+  // if (random(1) < 0.05) {
+  //   fireworks.push(new Firework());
+  // }
 
-    if (fireworks[i].done()) {
-      fireworks.splice(i, 1);
+  for (var k = fireworks.length - 1; k >= 0; k--) {
+    fireworks[k].update();
+    fireworks[k].show();
+
+    if (fireworks[k].done()) {
+      fireworks.splice(k, 1);
     }
   }
 }
