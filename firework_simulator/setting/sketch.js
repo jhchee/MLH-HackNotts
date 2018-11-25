@@ -1,6 +1,8 @@
 var timeSlice = [];
 var newFirework= {}
 var time = 0;
+var camera;
+
 
 function update(isSlide) {
   var data ={"time": 0 ,"pos": {"x": 0, "y": 400, "z": 0}};
@@ -38,6 +40,13 @@ function update(isSlide) {
 }
 
 function addButton(){
+  document.getElementById("x-slide").value = 0;
+  document.getElementById("y-slide").value = 0;
+  document.getElementById("z-slide").value = 0;
+
+  document.getElementById("x-index").value = 0;
+  document.getElementById("y-index").value = 0 ;
+  document.getElementById("z-index").value = 0;
   newFirework = {"color": "yellow","pos": {"x": 0, "y": 400, "z": 0}}
 
 };
@@ -48,7 +57,14 @@ function saveButton(){
 }
 
 function previewJson(){
-  
+  let data = JSON.stringify(timeSlice);
+
+  localStorage.setItem('fireworks', data); 
+  window.location = "../firework_visual/display.html";
+}
+
+function resetButton(){
+  camera.reset();
 }
 
 function setup() {
@@ -66,7 +82,7 @@ function setup() {
   stroke(255);
   strokeWeight(4);
   background(0);
-  createEasyCam({ distance: 400 });
+  camera = createEasyCam({ distance: 1000 });
 }
 
 function draw() {
@@ -101,6 +117,15 @@ function draw() {
   pop();
 
   display();
+
+  camera.pushState();
+    translate(300, 200, -200);
+    noFill();
+    stroke(255);
+    strokeWeight(1);
+    box(10, 10, 10);
+
+  camera.popState();  
 
 }
 
