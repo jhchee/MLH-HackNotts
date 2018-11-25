@@ -135,6 +135,8 @@ function display() {
 
   if (!isEmpty(newFirework)) {
     push();
+    fill(255, 0, 0);
+    noStroke();
     translate(newFirework.pos.x, newFirework.pos.y, newFirework.pos.z);
     sphere(10);
     pop();
