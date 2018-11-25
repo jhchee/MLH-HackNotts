@@ -2,6 +2,7 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" type="text/css" href="setupPage.css" />
+
     <script
       language="javascript"
       type="text/javascript"
@@ -35,11 +36,15 @@
       type="text/javascript"
       src="https://rawgit.com/diwi/p5.EasyCam/master/p5.easycam.js"
     ></script>
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div class="control-panel">
       <div class="slider-container">
-        <label class="slider-label">X-index</label>
+        <label class="slider-label">X-index</label> <br />
         <input
           type="range"
           name="rangeInput"
@@ -51,7 +56,8 @@
         <input type="text" class="pos-input" id="x-index" value="0" />
       </div>
       <div class="slider-container">
-        <label class="slider-label">Height</label>
+        <label class="slider-label">Height</label> <br />
+
         <input
           type="range"
           name="rangeInput"
@@ -63,7 +69,7 @@
         <input type="text" class="pos-input" id="y-index" value="0" />
       </div>
       <div class="slider-container">
-        <label class="slider-label">Z-index</label>
+        <label class="slider-label">Z-index</label> <br />
         <input
           type="range"
           name="rangeInput"
@@ -74,7 +80,22 @@
         />
         <input type="text" class="pos-input" id="z-index" value="0" />
       </div>
-      <button>Preview</button> <button>Add</button><button>Save</button>
+      <div class="slider-container">
+        <label class="slider-label">Timeslice</label> <br />
+        <input
+          type="range"
+          name="rangeInput"
+          min="0"
+          max="30"
+          value="0"
+          onchange="updateTimeSlice(this.value);"
+        />
+        <input type="text" class="pos-input" id="time-slice" value="0" />
+      </div>
+      <br />
+      <button>Preview</button> {&nbsp;}<button>Add</button> {&nbsp;}<button>
+        Save
+      </button>
     </div>
   </body>
 </html>

@@ -9,6 +9,9 @@ function updateY(val) {
 function updateZ(val) {
   document.getElementById("z-index").value = val;
 }
+function updateTimeSlice(val) {
+  document.getElementById("time-slice").value = val;
+}
 
 function setup() {
   createCanvas(windowWidth - 20, windowHeight - 20, WEBGL);
