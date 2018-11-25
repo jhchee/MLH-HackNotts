@@ -23,6 +23,14 @@ function update(isSlide) {
     data.time = document.getElementById("time-slice").value;
   }
 
+  if(document.getElementById("time-slide").value != data.time||document.getElementById("time-slice").value != data.time){
+    var innerString = "";
+    for (var j = 0; j < timeSlice[time].length; j++) {
+      innerString = innerString + "<option indexId=\""+ j.toString() + "\" > Fireworks "+j.toString()+"</opion></br>";
+    }
+    document.getElementById("Dropdown").innerHTML = innerString;
+  }
+
   document.getElementById("x-slide").value = data.pos.x;
   document.getElementById("y-slide").value = 400 - data.pos.y;
   document.getElementById("z-slide").value = data.pos.z;
@@ -50,14 +58,12 @@ function addButton() {
   document.getElementById("y-index").value = 0;
   document.getElementById("z-index").value = 0;
   newFirework = { color: "yellow", pos: { x: 0, y: 400, z: 0 } };
+  timeSlice[time].push(newFirework);
+  update(true);
+  newFirework = timeSlice[time].slice(newFirework.);
+  newFirework = {}
 }
 
-function saveButton() {
-  if (!isEmpty(newFirework)) {
-    timeSlice[time].push(newFirework);
-    newFirework = {};
-  }
-}
 function loadButton() {
   if (!isEmpty(JSON.parse(localStorage.getItem("fireworks")))) {
     timeSlice = JSON.parse(localStorage.getItem("fireworks"));
@@ -84,7 +90,6 @@ function setup() {
   createCanvas(windowWidth - 20, windowHeight - 20, WEBGL);
 
   colorMode(HSB);
-  gravity = createVector(0, 0.2, 0);
   stroke(255);
   strokeWeight(4);
   background(0);
