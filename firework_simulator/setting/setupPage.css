@@ -1,3 +1,13 @@
 .control-panel {
   position: absolute;
+  left: 30px;
+  top: 20px;
+}
+
+.slider-label {
+  color: white;
+}
+
+.pos-input {
+  width: 50px;
 }

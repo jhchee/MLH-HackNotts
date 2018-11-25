@@ -1,6 +1,7 @@
 <html>
   <head>
     <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css" href="setupPage.css" />
     <script
       language="javascript"
       type="text/javascript"
@@ -38,7 +39,7 @@
   <body>
     <div class="control-panel">
       <div class="slider-container">
-        <label>X-index</label>
+        <label class="slider-label">X-index</label>
         <input
           type="range"
           name="rangeInput"
@@ -47,10 +48,10 @@
           value="0"
           onchange="updateX(this.value);"
         />
-        <input type="text" id="x-index" value="0" />
+        <input type="text" class="pos-input" id="x-index" value="0" />
       </div>
       <div class="slider-container">
-        <label>Height</label>
+        <label class="slider-label">Height</label>
         <input
           type="range"
           name="rangeInput"
@@ -59,10 +60,10 @@
           value="0"
           onchange="updateY(this.value);"
         />
-        <input type="text" id="y-index" value="0" />
+        <input type="text" class="pos-input" id="y-index" value="0" />
       </div>
       <div class="slider-container">
-        <label>Z-index</label>
+        <label class="slider-label">Z-index</label>
         <input
           type="range"
           name="rangeInput"
@@ -71,7 +72,7 @@
           value="0"
           onchange="updateZ(this.value);"
         />
-        <input type="text" id="x-index" value="0" />
+        <input type="text" class="pos-input" id="z-index" value="0" />
       </div>
       <button>Preview</button> <button>Add</button><button>Save</button>
     </div>

@@ -11,7 +11,7 @@ function updateZ(val) {
 }
 
 function setup() {
-  createCanvas(windowWidth, windowHeight, WEBGL);
+  createCanvas(windowWidth - 20, windowHeight - 20, WEBGL);
   colorMode(HSB);
   gravity = createVector(0, 0.2, 0);
   stroke(255);
