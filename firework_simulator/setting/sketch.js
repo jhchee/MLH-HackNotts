@@ -1,5 +1,5 @@
 var timeSlice = [];
-
+var newFirework= {}
 function setup() {
   createCanvas(windowWidth/2, windowHeight/2, WEBGL);
   colorMode(HSB);
@@ -43,11 +43,11 @@ function draw() {
   box(800, 800, 800);
   pop();
 
-  
+
 }
 
 
-function display(time){
+function display(newFirework,time){
   var i = 0;
   var j = 0;
 
@@ -64,5 +64,34 @@ function display(time){
     }
   }
 
+  if(!isEmpty(newFirework)){
+    push();
+          translate(newFirework.pos.x,newFirework.pos.y,newFirework.pos.z);
+          sphere(1);
+    pop();
+  }
 
 }
+
+function saveFirework(newFirework,time){
+  for (i=0;i<timeSlice.length;i++){
+    if(timeSlice[i].launched_time==time){
+      timeSlice[i].firework.push(newFirework);
+      break;
+    }
+  }
+}
+
+function isEmpty(obj) {
+    for(var key in obj) {
+        if(obj.hasOwnProperty(key))
+            return false;
+    }
+    return true;
+}
+
+object.onchange = function(){
+  if(!isEmpty(newFirework)){
+    newFirework.pos.x = this.value ;
+  }
+};
