@@ -1,78 +1,61 @@
-// particle data structure
-
-// location
-// velocity
-// acceleration
-// lifespan
-// seed
-// hu
-
-// constructor of particle that has not exploded
-function Particle(x, y, z, h) {
-  this.hu = h;
-  this.acceleration = createVector(0, 0);
-  this.velocity = createVector(0, Math.random() * (-10 + 25) - 25, 0);
-  this.location = createVector(x, y, z);
-  this.seed = true;
-  this.lifespan = 255.0;
-}
-
-// constructor of particle that has exploded
-function ExplodedParticle(l, h) {
-  this.lifespan = 255.0;
-  this.location = l;
-  this.seed = false;
-  this.hu = h;
-  this.acceleration = createVector(0, 0);
-  this.velocity = createVector(Math.random, Math.random, Math.random);
-}
-
-// common method
-applyForce = force => {
-  this.acceleration.add(force);
-};
-
-run = () => {
-  update();
-  display();
-};
-explode = () => {
-  if (this.seed && this.velocity.y > 0) {
-    lifespan = 0;
-    return true;
-  }
-  return false;
-};
-
-update = () => {
-  this.velocity.add(this.acceleration);
-  this.location.add(this.velocity);
-  if (!this.seed) {
-    this.lifespan -= 5;
-    velocity.mult(0.9);
-  }
-  this.acceleration.mult(0);
-};
-
-display = () => {
-  //   colorMode(HSB);
-
-  stroke(this.hu, 255, 255, this.lifepsan);
-  if (this.seed) {
-    strokeWeight(4);
+function Particle(x, y, z, hu, firework) {
+  this.firework = firework;
+  if (this.firework) {
+    this.pos = createVector(0, 400, 0);
+    this.finalDestination = createVector(x, y, z);
   } else {
-    strokeWeight(2);
+    this.pos = createVector(x, y, z);
   }
-  push();
-  translate(this.location.x, this.location.y, this.location.z);
-  point(0, 0);
-  pop();
-};
+  this.lifespan = 800;
+  this.hu = hu;
+  this.acc = createVector(0, 0, 0);
 
-isDead = () => {
-  if (lifespan < 0.0) {
-    return true;
+  if (this.firework) {
+    this.vel = createVector(x / 10, -(400 - y) / 10, z / 10);
   } else {
-    return false;
+    this.vel = p5.Vector.random3D();
+    // define the range of radius of dispersal
+    this.vel.mult(random(2, 20));
   }
-};
+
+  this.applyForce = function(force) {
+    this.acc.add(force);
+  };
+
+  this.update = function() {
+    if (!this.firework) {
+      this.vel.mult(0.9);
+      this.lifespan -= 4;
+    }
+
+    this.vel.add(this.acc);
+    this.pos.add(this.vel);
+    this.acc.mult(0);
+  };
+
+  this.done = function() {
+    // define the decay rate
+    if (this.lifespan < 0) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  this.show = function() {
+    colorMode(HSB);
+    if (!this.firework) {
+      strokeWeight(2);
+      stroke(hu, 255, 255, this.lifespan);
+    } else {
+      strokeWeight(4);
+      stroke(hu, 255, 255);
+    }
+    push();
+    translate(this.pos.x, this.pos.y, this.pos.z);
+
+    // define the radius of one spark
+    sphere(0.5);
+    pop();
+  };
+}

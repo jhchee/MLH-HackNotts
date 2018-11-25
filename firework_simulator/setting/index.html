@@ -1,0 +1,98 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css" href="setupPage.css" />
+
+    <script
+      language="javascript"
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.1/p5.js"
+    ></script>
+    <script
+      language="javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.1/addons/p5.dom.js"
+    ></script>
+    <script
+      language="javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.1/addons/p5.sound.js"
+    ></script>
+    <script
+      language="javascript"
+      type="text/javascript"
+      src="sketch.js"
+    ></script>
+    <script
+      language="javascript"
+      type="text/javascript"
+      src="https://rawgit.com/diwi/p5.EasyCam/master/p5.easycam.js"
+    ></script>
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="control-panel">
+      <div class="slider-container">
+        <label class="slider-label">X-index</label> <br />
+        <input id="x-slide"
+          type="range"
+          name="rangeInput"
+          min="-400"
+          max="400"
+          value="0"
+          onchange="update(true);"
+        />
+        <input onchange="update(false);" type="text" class="pos-input" id="x-index" value="0" />
+      </div>
+      <div class="slider-container">
+        <label class="slider-label">Height</label> <br />
+
+        <input id="y-slide"
+          type="range"
+          name="rangeInput"
+          min="0"
+          max="800"
+          value="0"
+          onchange="update(true);"
+        />
+        <input onchange="update(false);" type="text" class="pos-input" id="y-index" value="0" />
+      </div>
+      <div class="slider-container">
+        <label class="slider-label">Z-index</label> <br />
+        <input id="z-slide"
+          type="range"
+          name="rangeInput"
+          min="-400"
+          max="400"
+          value="0"
+          onchange="update(true);"
+        />
+        <input onchange="update(false);" type="text" class="pos-input" id="z-index" value="0" />
+      </div>
+      <div class="slider-container">
+        <label class="slider-label">Timeslice</label> <br />
+        <input id="time-slide"
+          type="range"
+          name="rangeInput"
+          min="0"
+          max="30"
+          value="0"
+          onchange="update(true);"
+        />
+        <input onchange="update(false);" type="text" class="pos-input" id="time-slice" value="0" />
+      </div>
+      <br />
+      <button id="resetButton" onclick="resetButton();">Reset Camera</button>
+      {&nbsp;}
+      <button id="addButton" onclick="addButton();">Add</button>
+      {&nbsp;}
+      <button id="saveButton" onclick="saveButton();">Save</button></br></br>
+      <button id="loadButton" onclick="loadButton();">Load</button>
+      {&nbsp;}
+      <button onclick="previewJson()">Display</button>
+      {&nbsp;}
+      <button onclick="randomiseFirework()">Random</button>
+    </div>
+  </body>
+</html>

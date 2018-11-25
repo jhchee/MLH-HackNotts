@@ -1,0 +1,35 @@
+body {
+  font-family: "Open Sans", sans-serif;
+}
+.control-panel {
+  position: absolute;
+  left: 30px;
+  top: 20px;
+}
+
+.slider-label {
+  color: white;
+  margin-right: 20px;
+  font-size: 14px;
+}
+
+.pos-input {
+  width: 40px;
+  text-align: center;
+}
+.slider-container {
+  margin-bottom: 10px;
+}
+
+input[type="range"] {
+  margin-right: 10px;
+}
+input[type="text"] {
+  color: white;
+  background: black;
+  border: 1px solid white;
+}
+
+button {
+  /* margin-left: 10px; */
+}
